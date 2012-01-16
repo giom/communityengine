@@ -4,6 +4,7 @@ class Tag < ActiveRecord::Base
   
   class << self
     def popular(limit = 20, type = nil)
+      # ActsAsTaggableOnSteroid defines at_least but it's not compatible with postgres
       #tags = Tag.counts(:at_least => 0).limit(limit).order('count DESC')
       tags = Tag.counts.limit(limit).order('COUNT(tags.id) DESC')
       tags = tags.where("taggings.taggable_type = ?", type.capitalize) if type
