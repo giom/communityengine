@@ -4,7 +4,8 @@ class Tag < ActiveRecord::Base
   
   class << self
     def popular(limit = 20, type = nil)
-      tags = Tag.counts(:at_least => 0).limit(limit).order('count DESC')
+      #tags = Tag.counts(:at_least => 0).limit(limit).order('count DESC')
+      tags = Tag.counts.limit(limit).order('COUNT(tags.id) DESC')
       tags = tags.where("taggings.taggable_type = ?", type.capitalize) if type
       tags
     end  
@@ -28,7 +29,8 @@ class Tag < ActiveRecord::Base
       joins(:taggings).
       where({:taggings => {:id => tagging_ids }}).
       group("tags.id, tags.name").
-      order("count DESC").
+      #order("count DESC").
+      order("COUNT(tags.id) DESC").
       limit(limit)
   end
       
