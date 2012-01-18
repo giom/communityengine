@@ -1,0 +1,12 @@
+# config/application.yml
+defaults: &defaults
+  display_metro_area: false
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
