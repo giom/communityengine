@@ -128,7 +128,9 @@ Rails.application.routes.draw do
   match '/comments/delete_selected' => 'comments#delete_selected', :as => :delete_selected_comments
   
   resources :homepage_features
-  resources :metro_areas
+  if Settings.display_metro_area
+    resources :metro_areas
+  end 
   resources :ads
 
   resources :activities
@@ -165,7 +167,10 @@ Rails.application.routes.draw do
       match 'statistics'
       match 'crop_profile_photo'
       match 'upload_profile_photo'
-      match 'metro_area_update'
+      if Settings.display_metro_area
+          match 'metro_area_update'
+      end 
+
     end
     
     resources :friendships do
