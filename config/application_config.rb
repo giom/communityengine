@@ -24,7 +24,7 @@ configuration = {
   
   #:akismet_key => YOUR_KEY,
   # uncomment this if you want to use akismet for comment filtering. Go to http://en.wordpress.com/api-keys/
-  
+
   #uncomment below to use omniauth providers for login and signup
   # :auth_providers => {
   #   :twitter => {:key => 'key', :secret => 'secret'},
