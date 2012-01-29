@@ -27,7 +27,7 @@ class BaseController < ApplicationController
   end
 
   def site_index
-    @posts = Post.find_recent
+    @posts = Post.for_frontpage
 
     @rss_title = "#{configatron.community_name} "+:recent_posts.l
     @rss_url = rss_url

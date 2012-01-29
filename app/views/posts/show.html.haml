@@ -30,8 +30,8 @@
             -if @is_current_user || admin? || moderator?
               %li.edit= link_to :edit.l, edit_user_post_path(@post.user, @post)
               %li.delete= link_to :delete.l, user_post_path(@post.user, @post), {:method => :delete, :confirm => :permanently_delete_this_post.l}
-
-              
+            -if admin? || moderator?
+              %li.toggle= link_to("#{:toggle.l} #{:frontpage.l}".html_safe, toggle_frontpage_user_post_path(@post.user, @post), {:method => :put} )
           %script{:type => 'text/javascript'}
             :plain
               function showSendTo_friend(){

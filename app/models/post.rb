@@ -25,7 +25,7 @@ class Post < ActiveRecord::Base
   after_save do |post|
     activity = Activity.find_by_item_type_and_item_id('Post', post.id)
     if post.is_live? && !activity
-      post.create_activity_from_self 
+      post.create_activity_from_self
     elsif post.is_draft? && activity
       activity.destroy
     end
@@ -39,6 +39,13 @@ class Post < ActiveRecord::Base
     # Scopes    
     def by_featured_writers
       where("users.featured_writer = ?", true).includes(:user)
+    end
+    #old to show issues
+    #def for_frontpage
+    #  where('posts.published_as = ?', 'frontpage')
+    #end
+    def for_frontpage
+      where('posts.frontpage = ?', true)
     end
     def popular
       order('posts.view_count DESC')

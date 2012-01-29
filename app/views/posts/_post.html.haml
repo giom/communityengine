@@ -19,6 +19,10 @@
         = link_to :comments.l+" (#{post.comments.count})", user_post_path(post.user, post)+'#comments'      
       - if current_user and current_user.can_request_friendship_with(post.user)
         %li.addfriend= add_friend_link(post.user)
+      - if admin? || moderator?
+        %li.toggle
+          = link_to("#{:toggle.l} #{:frontpage.l}".html_safe, toggle_frontpage_user_post_path(post.user, post), {:method => :put} )
+
 
   .entry-content
     = truncate_words(post.post, 75, '...' ).html_safe

@@ -16,6 +16,7 @@ class PostsController < BaseController
   before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :manage, :preview]
   before_filter :find_user, :only => [:new, :edit, :index, :show, :update_views, :manage, :preview]
   before_filter :require_ownership_or_moderator, :only => [:edit, :update, :destroy, :create, :manage, :new]
+  before_filter :admin_or_moderator_required, :only => [:toggle_frontpage]
 
   skip_before_filter :verify_authenticity_token, :only => [:update_views, :send_to_friend] #called from ajax on cached pages 
   
@@ -90,7 +91,7 @@ class PostsController < BaseController
   
   # GET /posts/new
   def new
-    @user = User.find(params[:user_id])    
+    @user = User.find(params[:user_id]) 
     @post = Post.new(params[:post])
     @post.published_as = 'live'
     @categories = Category.find(:all)
@@ -104,8 +105,13 @@ class PostsController < BaseController
   # POST /posts
   # POST /posts.xml
   def create    
-    @user = User.find(params[:user_id])
-    @post = Post.new(params[:post])
+    @user = User.find(params[:user_id]) 
+    if @user.featured_writer
+      @PostVals = params[:post].merge("frontpage"=>true)
+    else
+      @PostVals = params[:post]
+    end
+    @post = Post.new(@PostVals)
     @post.user = @user
     @post.tag_list = params[:tag_list] || ''
     
@@ -238,7 +244,17 @@ class PostsController < BaseController
     render :partial => "categories/tips", :locals => {:category => nil}    
   end
   
+  def toggle_frontpage
+    @post = Post.find(params[:id])
+    @post.toggle!(:frontpage)
+    redirect_to home_url
+  end
+  
   private
+
+    def admin_or_moderator_required
+      current_user && (current_user.admin? || current_user.moderator?) ? true : access_denied
+    end
   
   def require_ownership_or_moderator
     @user ||= User.find(params[:user_id])
