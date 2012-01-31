@@ -107,7 +107,7 @@ class PostsController < BaseController
   def create    
     @user = User.find(params[:user_id]) 
     if @user.featured_writer
-      @PostVals = params[:post].merge("frontpage"=>true)
+      @PostVals = params[:post].merge("frontpage"=>true, "frontpage_toggled_at" => Time.now)
     else
       @PostVals = params[:post]
     end
@@ -245,8 +245,11 @@ class PostsController < BaseController
   end
   
   def toggle_frontpage
+    debugger
     @post = Post.find(params[:id])
     @post.toggle!(:frontpage)
+    @post.frontpage_toggled_at = Time.now
+    @post.save
     redirect_to home_url
   end
   

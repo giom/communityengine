@@ -45,7 +45,7 @@ class Post < ActiveRecord::Base
     #  where('posts.published_as = ?', 'frontpage')
     #end
     def for_frontpage
-      where('posts.frontpage = ?', true)
+      where('posts.frontpage = ?', true).order('posts.frontpage_toggled_at DESC')
     end
     def popular
       order('posts.view_count DESC')
