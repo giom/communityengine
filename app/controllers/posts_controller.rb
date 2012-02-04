@@ -245,7 +245,6 @@ class PostsController < BaseController
   end
   
   def toggle_frontpage
-    debugger
     @post = Post.find(params[:id])
     @post.toggle!(:frontpage)
     @post.frontpage_toggled_at = Time.now
