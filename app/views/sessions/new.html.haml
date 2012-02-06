@@ -17,7 +17,7 @@
         %p
           = submit_tag :log_in.l
 
-    -if configatron.auth_providers.to_hash.keys.any?      
+    -if !configatron.auth_providers.blank? 
       -box :class => "alt" do
         %h3= t 'sessions.new.omniauth.header'
         -configatron.auth_providers.to_hash.keys.each do |provider|
