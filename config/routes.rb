@@ -162,7 +162,7 @@ Rails.application.routes.draw do
       get 'welcome_invite'
       get 'welcome_complete'
       
-      post 'assume'               
+      get 'assume'               
       
       match 'statistics'
       match 'crop_profile_photo'

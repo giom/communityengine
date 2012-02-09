@@ -48,6 +48,7 @@ class PagesController < BaseController
       flash[:notice] = :page_was_successfully_updated.l
       redirect_to admin_pages_path
     else
+        @page = Page.find(params[:id])
       render :action => :edit
     end
   end
@@ -61,7 +62,7 @@ class PagesController < BaseController
   private
   
   def require_moderator
-    @page ||= Page.find(params[:id]) if params[:id]
+    @page ||= Page.unscoped.find(params[:id]) if params[:id]
     unless admin? || moderator?
       redirect_to :controller => 'sessions', :action => 'new' and return false
     end
