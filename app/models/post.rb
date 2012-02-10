@@ -40,10 +40,6 @@ class Post < ActiveRecord::Base
     def by_featured_writers
       where("users.featured_writer = ?", true).includes(:user)
     end
-    #old to show issues
-    #def for_frontpage
-    #  where('posts.published_as = ?', 'frontpage')
-    #end
     def for_frontpage
       where('posts.frontpage = ?', true).order('posts.frontpage_toggled_at DESC')
     end
