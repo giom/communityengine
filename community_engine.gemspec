@@ -48,7 +48,7 @@ Gem::Specification.new do |s|
   s.add_dependency(%q<rails_autolink>, [">= 0"])
   s.add_dependency(%q<meta_search>, ["= 1.1.1"])
   s.add_dependency(%q<koala>, [">= 0"])
-  s.add_dependency(%q<tinymce-rails>, ["~> 3.4.9"])
+  s.add_dependency(%q<tinymce-rails>, ["~> 3.4.7"])
   s.add_dependency(%q<bborn-acts_as_taggable_on_steroids>, ["~> 2.1"])
   s.add_dependency(%q<settingslogic>, ["~> 2.0.8"])
 end
