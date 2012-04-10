@@ -10,7 +10,6 @@ configatron.default_mce_options = {
   :convert_urls => false,
   :cleanup => true,
   :cleanup_on_startup => true,  
-  :convert_fonts_to_spans => true,
   :theme_advanced_resize_horizontal => false,
   :theme_advanced_buttons1 => %w{styleselect bold italic underline separator justifyleft justifycenter justifyright indent outdent separator bullist numlist separator link unlink image media separator undo redo code},
   :theme_advanced_buttons2 => [],
@@ -22,7 +21,9 @@ configatron.default_mce_options = {
   :media_strict => true,
   :paste_use_dialog => false,
   :paste_auto_cleanup_on_paste => true,
-  :content_css => "assets/tinymce_custom_content.css"
+  :convert_fonts_to_spans => true,
+  :theme_advanced_font_sizes => "xx-small=1,x-small=2,small=3,medium=4,large=5,x-large=6,xx-large=7",
+  :font_size_style_values => "xx-small,x-small,small,medium,large,x-large,xx-large"
   }
   
 configatron.simple_mce_options = {
