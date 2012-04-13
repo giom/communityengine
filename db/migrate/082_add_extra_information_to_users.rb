@@ -1,4 +1,4 @@
-class AddExtraInformationToUser < ActiveRecord::Migration
+class AddExtraInformationToUsers < ActiveRecord::Migration
   def self.up
     add_column :users, :industry, :string
     add_column :users, :title, :string
