@@ -21,9 +21,7 @@ configatron.default_mce_options = {
   :media_strict => true,
   :paste_use_dialog => false,
   :paste_auto_cleanup_on_paste => true,
-  :convert_fonts_to_spans => true,
-  :theme_advanced_font_sizes => "xx-small=1,x-small=2,small=3,medium=4,large=5,x-large=6,xx-large=7",
-  :font_size_style_values => "xx-small,x-small,small,medium,large,x-large,xx-large"
+  :convert_fonts_to_spans => true
   }
   
 configatron.simple_mce_options = {
