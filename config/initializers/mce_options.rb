@@ -22,7 +22,7 @@ configatron.default_mce_options = {
   :paste_use_dialog => false,
   :paste_auto_cleanup_on_paste => true,
   :convert_fonts_to_spans => true,
-  :theme_advanced_font_sizes : "12px,14px,16px,18px,26px"
+  :theme_advanced_font_sizes => "12px,14px,16px,18px,26px"
   }
   
 configatron.simple_mce_options = {
